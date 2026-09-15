@@ -12,9 +12,11 @@ npm install @tushe-abdulqahar/tokens
 
 ```css
 @import "@tushe-abdulqahar/tokens/tokens.css";
+@import "@tushe-abdulqahar/tokens/theme-map.css";
+@import "@tushe-abdulqahar/tokens/utilities.css";
 ```
 
-Every token from the Tushe DS Figma file is available as a CSS custom property, e.g. `var(--semantics-surface-background-surface-faint)`.
+`tokens.css` gives you every token as a CSS custom property, e.g. `var(--semantics-surface-background-surface-faint)`. `theme-map.css` and `utilities.css` need Tailwind v4 to actually compile them into classes, if you're not using Tailwind, the `tokens.css` import alone is all you need. Import order matters, `theme-map.css` and `utilities.css` both reference variables `tokens.css` defines.
 
 ## Switching dimensions
 
@@ -42,6 +44,6 @@ npm run build
 
 Regenerates `dist/tokens.css` from `src/tokens.json`, the export from the Tushe Token Export Figma plugin. `src/tokens.json` is the only thing that should ever be hand-replaced (by re-running the plugin export); `dist/tokens.css` is always generated, never hand-edited.
 
-## What's in this package, and what's still to come
+## What's in this package
 
-This package currently ships `tokens.css`, every token as a custom property. Two more files from the original pipeline plan are not yet built: `theme-map.css` (a Tailwind v4 `@theme inline` bridge for spacing/radius/type/easing) and `utilities.css` (`@utility` classes for semantic color and duration, e.g. `bg-brand-bold`). Both read from the same custom properties this package already generates, adding them doesn't change anything documented here.
+This package ships all three CSS files: `tokens.css` (every token as a custom property), `theme-map.css` (a Tailwind v4 `@theme inline` bridge for spacing, radius, and type, generated only for categories with a confirmed Tailwind namespace), and `utilities.css` (`@utility` classes for role-aware semantic color, e.g. `bg-brand-bold`, plus focus-ring `ring-*`/`outline-*` pairs). All three are generated directly from Figma data, nothing is copied from another project's shape, so categories that don't exist in the Tushe DS (there's currently no `duration` or `easing` primitive) simply don't appear, rather than being faked to match a template.

@@ -6,7 +6,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdulqaharu/tushe-tokens.git"
+    "url": "git+https://github.com/<org-or-user>/tushe-tokens.git"
   },
   "publishConfig": {
     "access": "public",
@@ -19,7 +19,9 @@
   "style": "dist/tokens.css",
   "exports": {
     ".": "./dist/tokens.css",
-    "./tokens.css": "./dist/tokens.css"
+    "./tokens.css": "./dist/tokens.css",
+    "./theme-map.css": "./dist/theme-map.css",
+    "./utilities.css": "./dist/utilities.css"
   },
   "scripts": {
     "build": "node scripts/build.js"

@@ -18,10 +18,22 @@
   "main": "dist/tokens.css",
   "style": "dist/tokens.css",
   "exports": {
-    ".": "./dist/tokens.css",
-    "./tokens.css": "./dist/tokens.css",
-    "./theme-map.css": "./dist/theme-map.css",
-    "./utilities.css": "./dist/utilities.css"
+    ".": {
+      "style": "./dist/tokens.css",
+      "default": "./dist/tokens.css"
+    },
+    "./tokens.css": {
+      "style": "./dist/tokens.css",
+      "default": "./dist/tokens.css"
+    },
+    "./theme-map.css": {
+      "style": "./dist/theme-map.css",
+      "default": "./dist/theme-map.css"
+    },
+    "./utilities.css": {
+      "style": "./dist/utilities.css",
+      "default": "./dist/utilities.css"
+    }
   },
   "scripts": {
     "build": "node scripts/build.js"

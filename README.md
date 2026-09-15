@@ -1,17 +1,17 @@
-# @tushe/tokens
+# @tushe-abdulqahar/tokens
 
 Tushe Design System tokens, compiled to CSS custom properties. Zero runtime dependencies, nothing to install alongside it, just a CSS file to import.
 
 ## Install
 
 ```sh
-npm install @tushe/tokens
+npm install @tushe-abdulqahar/tokens
 ```
 
 ## Use
 
 ```css
-@import "@tushe/tokens/tokens.css";
+@import "@tushe-abdulqahar/tokens/tokens.css";
 ```
 
 Every token from the Tushe DS Figma file is available as a CSS custom property, e.g. `var(--semantics-surface-background-surface-faint)`.

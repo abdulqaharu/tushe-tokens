@@ -48,7 +48,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          # npm's own minimum required Node version has moved since this
+          # workflow was first written (it now needs ^22.22.2 || ^24.15.0 ||
+          # >=26.0.0 to install npm@latest below). If this step starts
+          # failing again with EBADENGINE, npm has raised its requirement
+          # again, bump this to whatever npm's error message asks for.
           # deliberately NOT setting registry-url here: when it's set,
           # setup-node always writes an _authToken line to .npmrc, and even
           # an empty one makes npm CLI think classic auth is configured,

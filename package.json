@@ -1,6 +1,6 @@
 {
   "name": "@tushe-abdulqahar/tokens",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "Tushe Design System tokens as CSS custom properties, switchable across four independent partner-theming dimensions (theme, neutral, accent, radius, font) with zero runtime dependencies.",
   "license": "MIT",
   "private": false,
@@ -18,22 +18,8 @@
   "main": "dist/tokens.css",
   "style": "dist/tokens.css",
   "exports": {
-    ".": {
-      "style": "./dist/tokens.css",
-      "default": "./dist/tokens.css"
-    },
-    "./tokens.css": {
-      "style": "./dist/tokens.css",
-      "default": "./dist/tokens.css"
-    },
-    "./theme-map.css": {
-      "style": "./dist/theme-map.css",
-      "default": "./dist/theme-map.css"
-    },
-    "./utilities.css": {
-      "style": "./dist/utilities.css",
-      "default": "./dist/utilities.css"
-    }
+    ".": "./dist/tokens.css",
+    "./*": "./dist/*"
   },
   "scripts": {
     "build": "node scripts/build.js"

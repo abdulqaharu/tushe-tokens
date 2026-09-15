@@ -1,0 +1,79 @@
+name: Publish tokens
+
+# Fires only when src/tokens.json itself changes on main, i.e. when a new
+# export from the Tushe Token Export Figma plugin gets committed. Everything
+# after that is automatic: rebuild, version bump, commit, publish to the
+# public npm registry.
+#
+# Publishing uses npm Trusted Publishing (OIDC), not a stored token. No
+# NPM_TOKEN secret exists anywhere in this repo. GitHub issues a short-lived
+# identity assertion for this specific workflow run, npm verifies it against
+# the Trusted Publisher configured on the package (set up once on
+# npmjs.com, see SETUP.md), and exchanges it for a one-time publish
+# credential that expires when the run ends. This is deliberately not the
+# older bypass-2FA-token approach, npm is phasing that path out for direct
+# publish by January 2027.
+#
+# Loop safety, by construction: the bot commit this workflow makes touches
+# package.json and dist/tokens.css, never src/tokens.json. Since the trigger
+# path filter is src/tokens.json only, the bot's own commit can never
+# re-trigger this workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/tokens.json"
+
+permissions:
+  contents: write   # to commit the version bump + rebuilt dist back to the repo
+  id-token: write   # to let npm issue an OIDC token for this run (trusted publishing)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # deliberately NOT setting registry-url here: when it's set,
+          # setup-node always writes an _authToken line to .npmrc, and even
+          # an empty one makes npm CLI think classic auth is configured,
+          # which silently skips the OIDC exchange entirely and the publish
+          # fails with ENEEDAUTH. Trusted publishing needs no registry-url
+          # and no token, npm's default registry is registry.npmjs.org
+          # already.
+
+      - name: Ensure npm is new enough for trusted publishing
+        run: npm install -g npm@latest   # trusted publishing needs npm 11.5.1+
+
+      - name: Rebuild dist/tokens.css from the new tokens.json
+        run: npm run build
+
+      # Every content change to tokens.json is treated as patch-level by
+      # default. This is a judgment call worth being explicit about: a
+      # partner-facing token value changing (a hex, a spacing number) is
+      # patch-safe, but a token being removed or renamed is a breaking
+      # change for anything consuming that CSS variable name directly and
+      # should be a manual minor/major bump instead, not silently patched.
+      # This workflow does not currently detect that distinction.
+      - name: Bump patch version
+        id: bump
+        run: |
+          npm version patch --no-git-tag-version
+          echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the rebuilt dist and version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json dist/tokens.css
+          git commit -m "chore: rebuild tokens.css and bump to v${{ steps.bump.outputs.version }} [skip ci]"
+          git push
+
+      - name: Publish to the public npm registry
+        run: npm publish --provenance
+        # no NODE_AUTH_TOKEN, no NPM_TOKEN secret anywhere, this is the point

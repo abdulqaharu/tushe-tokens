@@ -23,6 +23,16 @@ on:
     branches: [main]
     paths:
       - "src/tokens.json"
+      - "scripts/build.js"
+  workflow_dispatch: {}
+  # workflow_dispatch adds a manual "Run workflow" button in the Actions tab.
+  # This exists specifically for situations the automatic trigger doesn't
+  # cover: changes to package.json (exports map, metadata) or the docs, which
+  # deliberately stay OUT of the path filter above. The bot's own commit
+  # touches package.json (version bump) and dist/*.css every run, so adding
+  # either to the automatic trigger would make the workflow re-trigger
+  # itself, an actual infinite loop, not a hypothetical one. build.js is
+  # safe to watch automatically because the bot never touches it.
 
 permissions:
   contents: write   # to commit the version bump + rebuilt dist back to the repo

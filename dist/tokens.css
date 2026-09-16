@@ -113,7 +113,7 @@
   --primitives-font-size-8xl: 96px;
   --primitives-font-size-9xl: 128px;
   --primitives-font-size-xxs: 11px;
-  --primitives-font-family-sans: Inter;
+  --primitives-font-family-sans: var(--font-preset-5);
   --primitives-font-family-serif: Georgia;
   --primitives-font-family-mono: Menlo;
   --primitives-font-style-italic: italic;
@@ -882,23 +882,23 @@
 }
 
 [data-font="preset-1"] {
-  --primitives-font-family-sans: Google Sans Flex;
+  --primitives-font-family-sans: var(--font-preset-1);
 }
 
 [data-font="preset-2"] {
-  --primitives-font-family-sans: DM Sans;
+  --primitives-font-family-sans: var(--font-preset-2);
 }
 
 [data-font="preset-3"] {
-  --primitives-font-family-sans: Outfit;
+  --primitives-font-family-sans: var(--font-preset-3);
 }
 
 [data-font="preset-4"] {
-  --primitives-font-family-sans: Manrope;
+  --primitives-font-family-sans: var(--font-preset-4);
 }
 
 [data-font="preset-5"] {
-  --primitives-font-family-sans: Inter;
+  --primitives-font-family-sans: var(--font-preset-5);
 }
 
 [data-theme="Light"] {

@@ -129,6 +129,36 @@ function formatLiteral(value, cssVarName) {
 
 // --- 2. build CSS ------------------------------------------------------------
 
+// next/font/google self-hosts fonts under a synthetic, scoped family name,
+// it never registers the plain Google Fonts name ("DM Sans") globally in the
+// browser. So the literal names in tokens.json's font.family.sans mode-map
+// can't be used directly as CSS font-family values, they need to become
+// references to whatever CSS variable the consuming Next.js app exposes via
+// next/font/google's `variable` option. This mapping is that hand-curated
+// translation, consistent with the standing principle that naming is
+// decoupled from Figma paths rather than auto-derived.
+const FONT_NAME_TO_CSS_VAR = {
+  "Google Sans Flex": "--font-preset-1",
+  "DM Sans": "--font-preset-2",
+  "Outfit": "--font-preset-3",
+  "Manrope": "--font-preset-4",
+  "Inter": "--font-preset-5",
+};
+const FONT_TOKEN_PATH = "primitives.font.family.sans";
+
+function resolveFontValue(rawValue, dottedPath) {
+  if (dottedPath !== FONT_TOKEN_PATH) return null; // not the font token, handle normally
+  const cssVar = FONT_NAME_TO_CSS_VAR[rawValue];
+  if (!cssVar) {
+    throw new Error(
+      `Font preset "${rawValue}" at ${dottedPath} has no entry in FONT_NAME_TO_CSS_VAR. ` +
+        `Every font name in the font.family.sans mode-map needs a matching CSS variable ` +
+        `here, add it before rebuilding, this can't fall back to the literal name.`
+    );
+  }
+  return `var(${cssVar})`;
+}
+
 function buildCss(tokens) {
   const rootLines = [];
   // one array of declaration lines per non-default mode value, keyed by
@@ -148,9 +178,13 @@ function buildCss(tokens) {
     if (modeSet) {
       for (const mode of modeSet.modes) {
         const raw = token.value[mode];
-        const resolved = isReference(raw)
-          ? `var(--${cssVarName(referencePath(raw))})`
-          : formatLiteral(raw, varName);
+        const fontValue = resolveFontValue(raw, dottedPath);
+        const resolved =
+          fontValue !== null
+            ? fontValue
+            : isReference(raw)
+            ? `var(--${cssVarName(referencePath(raw))})`
+            : formatLiteral(raw, varName);
         const line = `  --${varName}: ${resolved};`;
         if (mode === modeSet.default) {
           rootLines.push(line);

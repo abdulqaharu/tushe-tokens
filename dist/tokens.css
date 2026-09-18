@@ -1475,13 +1475,13 @@
 
 [data-radius="round"] {
   --radius-radius-none: 0px;
-  --radius-radius-xs: 6px;
-  --radius-radius-sm: 8px;
-  --radius-radius-md: 10px;
-  --radius-radius-lg: 12px;
-  --radius-radius-xl: 16px;
-  --radius-radius-2xl: 24px;
-  --radius-radius-3xl: 32px;
+  --radius-radius-xs: 8px;
+  --radius-radius-sm: 10px;
+  --radius-radius-md: 12px;
+  --radius-radius-lg: 16px;
+  --radius-radius-xl: 24px;
+  --radius-radius-2xl: 32px;
+  --radius-radius-3xl: 9999px;
   --radius-radius-4xl: 9999px;
   --radius-radius-5xl: 9999px;
   --radius-radius-full: 9999px;

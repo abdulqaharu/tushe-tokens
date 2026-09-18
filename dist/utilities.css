@@ -333,28 +333,28 @@
   border-color: var(--semantics-surface-border-static-black);
 }
 
-@utility border-Input-bold {
-  border-color: var(--semantics-surface-border-Input-bold);
+@utility border-input-bold {
+  border-color: var(--semantics-surface-border-input-bold);
 }
 
-@utility border-Input-bold-focus {
-  border-color: var(--semantics-surface-border-Input-bold-focus);
+@utility border-input-bold-focus {
+  border-color: var(--semantics-surface-border-input-bold-focus);
 }
 
-@utility border-Input-bold-selected {
-  border-color: var(--semantics-surface-border-Input-bold-selected);
+@utility border-input-bold-selected {
+  border-color: var(--semantics-surface-border-input-bold-selected);
 }
 
-@utility border-Input-subtle {
-  border-color: var(--semantics-surface-border-Input-subtle);
+@utility border-input-subtle {
+  border-color: var(--semantics-surface-border-input-subtle);
 }
 
-@utility border-Input-faint {
-  border-color: var(--semantics-surface-border-Input-faint);
+@utility border-input-faint {
+  border-color: var(--semantics-surface-border-input-faint);
 }
 
-@utility border-Input-muted {
-  border-color: var(--semantics-surface-border-Input-muted);
+@utility border-input-muted {
+  border-color: var(--semantics-surface-border-input-muted);
 }
 
 @utility ring-neutral {

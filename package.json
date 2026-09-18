@@ -1,6 +1,6 @@
 {
   "name": "@tushe-abdulqahar/tokens",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Tushe Design System tokens as CSS custom properties, switchable across four independent partner-theming dimensions (theme, neutral, accent, radius, font) with zero runtime dependencies.",
   "license": "MIT",
   "private": false,

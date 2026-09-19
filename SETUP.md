@@ -145,6 +145,44 @@ This is what lets GitHub publish new versions with no stored password anywhere.
 
 ---
 
+## Part 5b: Font setup for non-Next.js projects (Vite, plain React, etc.)
+
+**(one-time per project)**
+
+Steps 20–22 work identically regardless of framework, **except for font family switching specifically**. Everything else, `data-theme`, `data-neutral`, `data-accent`, `data-radius`, every color and spacing token, is plain CSS and doesn't care what rendered the page.
+
+Font family is the one exception, and it's worth understanding why before just copying the snippet below. `tokens.css` never defines what `--font-preset-1` through `--font-preset-5` actually *are*, it only references them (`var(--font-preset-1)`, etc.). In a Next.js project, `next/font/google`'s `variable` option is what defines those five variables, by generating a scoped class in the root layout. Vite and plain React have no equivalent of that API, so without extra setup, those five variables are simply never defined, and font text silently falls back to the browser default, no error, just wrong-looking text.
+
+The fix is to define those five variables yourself, once, via a plain Google Fonts `<link>`:
+
+23. In `index.html`, inside `<head>`, before your app's own stylesheet:
+    ```html
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    ```
+    The two `preconnect` links go first, letting the browser warm up the connection to Google's servers in parallel with the rest of `<head>`, rather than only starting once the actual stylesheet request fires.
+
+24. In your global CSS, before importing the token package's files, define the five variables using the *real* font names directly (unlike `next/font`, a plain `<link>`-loaded font registers its real name globally, so there's no synthetic scoped name to reference):
+    ```css
+    :root {
+      --font-preset-1: "Google Sans Flex", sans-serif;
+      --font-preset-2: "DM Sans", sans-serif;
+      --font-preset-3: "Outfit", sans-serif;
+      --font-preset-4: "Manrope", sans-serif;
+      --font-preset-5: "Inter", sans-serif;
+    }
+    ```
+
+25. Nothing else changes. `data-font="preset-1"` still does exactly what it does in the Next.js setup, it just resolves against this plain `:root` block instead of a `next/font`-generated class.
+
+Two things worth knowing, not just copying blind:
+
+- **Google Sans Flex is a genuinely recent addition to the public Google Fonts CDN** (November 2025, when Google open-sourced it), and it's a variable font with several axes beyond weight (grade, slant, width, roundness). The `:wght@` syntax above pulls only the weight axis at the four values the system actually uses. If the design ever wants to use its other axes deliberately, the URL construction would need to change.
+- Font family names in these URLs have to match Google's exact naming, spacing and capitalization included, or the request silently 404s for just that one family while the other four keep working. Worth a quick check against the font's specimen page on fonts.google.com if something looks like it's not loading.
+
+---
+
 ## If something goes wrong
 
 - **`npm publish` in step 9 fails**: unfinished 2FA, or the `@tushe` scope isn't actually yours yet.
@@ -152,3 +190,4 @@ This is what lets GitHub publish new versions with no stored password anywhere.
 - **The Action succeeds but npmjs.com doesn't show a new version**: check for a staged, unapproved version, step 12 was likely skipped.
 - **The Action doesn't run at all**: your change didn't touch `src/tokens.json` specifically.
 - **`bg-brand-bold` doesn't work in your project**: check import order first, `theme-map.css` and `utilities.css` need `tokens.css` imported before them, and confirm your project is actually on Tailwind v4 (`@utility` is a v4-only directive).
+- **Fonts look wrong in a Vite/React project specifically, but everything else themes correctly**: this is almost always the font gap described in Part 5b, `next/font`'s job was never replaced. Check that the `--font-preset-*` variables are actually defined somewhere your app loads.

@@ -19,6 +19,10 @@ npm install @tushe-abdulqahar/tokens
 
 `tokens.css` gives you every token as a CSS custom property, e.g. `var(--semantics-surface-background-surface-faint)`. `theme-map.css`, `utilities.css`, and `text-styles.css` all need Tailwind v4 to actually compile them into classes, if you're not using Tailwind, the `tokens.css` import alone is all you need. Import order matters, the other three all reference variables `tokens.css` defines. `text-styles.css` gives compound `text-*` classes (`text-body-base-normal`) covering font-size, line-height, letter-spacing, and weight in one class, mobile-first with a 768px breakpoint override for the web-sized values. It deliberately excludes font-family, pair it with `font-sans` (already inherited from the root layout) or `font-mono` for `text-code-*`.
 
+## Framework compatibility
+
+Every dimension except font family is plain CSS and works identically regardless of framework, Next.js, Vite, plain React, anything that can import a CSS file. Font family switching is the one exception: `next/font/google`'s `variable` option is what defines `--font-preset-1` through `--font-preset-5` in a Next.js project, and non-Next.js projects need to define those five variables themselves (a plain Google Fonts `<link>` plus a `:root` block works well). See **SETUP.md, Part 5b** for the exact setup.
+
 ## Switching dimensions
 
 Four partner-theming dimensions switch independently, each via its own `data-*` attribute on any ancestor element (typically `<html>`):

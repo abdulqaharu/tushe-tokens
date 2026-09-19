@@ -620,7 +620,7 @@
   --semantics-surface-text-surface-inverse: var(--neutral-neutral-50);
   --semantics-surface-text-surface-flat: #000000;
   --semantics-surface-text-brand-bold: var(--theme-theme-500);
-  --semantics-surface-text-brand-inverse: var(--neutral-neutral-50);
+  --semantics-surface-text-brand-inverse: var(--primitives-color-white);
   --semantics-surface-text-brand-faint-disabled: var(--theme-theme-300);
   --semantics-surface-text-link-bold: var(--theme-theme-500);
   --semantics-surface-text-link-subtle: var(--theme-theme-600);
@@ -633,7 +633,7 @@
   --semantics-surface-icon-surface-inverse: var(--neutral-neutral-50);
   --semantics-surface-icon-surface-flat: var(--primitives-color-black);
   --semantics-surface-icon-brand-bold: var(--theme-theme-500);
-  --semantics-surface-icon-brand-inverse: var(--neutral-neutral-50);
+  --semantics-surface-icon-brand-inverse: var(--primitives-color-white);
   --semantics-surface-icon-brand-faint-disabled: var(--theme-theme-300);
   --semantics-surface-icon-static-white: var(--primitives-color-white);
   --semantics-surface-icon-static-black: var(--primitives-color-black);
@@ -955,7 +955,7 @@
   --semantics-surface-text-surface-inverse: var(--neutral-neutral-50);
   --semantics-surface-text-surface-flat: #000000;
   --semantics-surface-text-brand-bold: var(--theme-theme-500);
-  --semantics-surface-text-brand-inverse: var(--neutral-neutral-50);
+  --semantics-surface-text-brand-inverse: var(--primitives-color-white);
   --semantics-surface-text-brand-faint-disabled: var(--theme-theme-300);
   --semantics-surface-text-link-bold: var(--theme-theme-500);
   --semantics-surface-text-link-subtle: var(--theme-theme-600);
@@ -968,7 +968,7 @@
   --semantics-surface-icon-surface-inverse: var(--neutral-neutral-50);
   --semantics-surface-icon-surface-flat: var(--primitives-color-black);
   --semantics-surface-icon-brand-bold: var(--theme-theme-500);
-  --semantics-surface-icon-brand-inverse: var(--neutral-neutral-50);
+  --semantics-surface-icon-brand-inverse: var(--primitives-color-white);
   --semantics-surface-icon-brand-faint-disabled: var(--theme-theme-300);
   --semantics-surface-icon-static-white: var(--primitives-color-white);
   --semantics-surface-icon-static-black: var(--primitives-color-black);

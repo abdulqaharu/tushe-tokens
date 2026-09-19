@@ -658,6 +658,10 @@
   --semantics-surface-border-input-muted: var(--neutral-neutral-100);
   --semantics-surface-focus-ring-neutral: var(--neutral-neutral-alpha-default);
   --semantics-surface-focus-ring-brand: var(--theme-theme-alpha-strong);
+  --semantics-surface-overlay-bold: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-subtle: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-muted: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-faint: rgba(NaN, NaN, NaN, undefined);
   --semantics-state-background-info-bold: var(--primitives-color-blue-800);
   --semantics-state-background-info-bold-hover: var(--primitives-color-blue-900);
   --semantics-state-background-info-subtle: var(--primitives-color-blue-500);
@@ -993,6 +997,10 @@
   --semantics-surface-border-input-muted: var(--neutral-neutral-100);
   --semantics-surface-focus-ring-neutral: var(--neutral-neutral-alpha-default);
   --semantics-surface-focus-ring-brand: var(--theme-theme-alpha-strong);
+  --semantics-surface-overlay-bold: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-subtle: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-muted: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-faint: rgba(NaN, NaN, NaN, undefined);
   --semantics-state-background-info-bold: var(--primitives-color-blue-800);
   --semantics-state-background-info-bold-hover: var(--primitives-color-blue-900);
   --semantics-state-background-info-subtle: var(--primitives-color-blue-500);
@@ -1265,6 +1273,10 @@
   --semantics-surface-border-input-muted: var(--neutral-neutral-700);
   --semantics-surface-focus-ring-neutral: var(--neutral-neutral-alpha-stronger);
   --semantics-surface-focus-ring-brand: var(--theme-theme-alpha-stronger);
+  --semantics-surface-overlay-bold: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-subtle: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-muted: rgba(NaN, NaN, NaN, undefined);
+  --semantics-surface-overlay-faint: rgba(NaN, NaN, NaN, undefined);
   --semantics-state-background-info-bold: var(--primitives-color-blue-200);
   --semantics-state-background-info-bold-hover: var(--primitives-color-blue-100);
   --semantics-state-background-info-subtle: var(--primitives-color-blue-500);

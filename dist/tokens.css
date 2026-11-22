@@ -849,7 +849,7 @@
   --radius-radius-2xl: 12px;
   --radius-radius-3xl: 16px;
   --radius-radius-4xl: 24px;
-  --radius-radius-5xl: 32px;
+  --radius-radius-5xl: 28px;
   --radius-radius-full: 9999px;
   --neutral-neutral-50: var(--primitives-color-neutral-50);
   --neutral-neutral-100: var(--primitives-color-neutral-100);
@@ -1467,7 +1467,7 @@
   --radius-radius-2xl: 12px;
   --radius-radius-3xl: 16px;
   --radius-radius-4xl: 24px;
-  --radius-radius-5xl: 32px;
+  --radius-radius-5xl: 28px;
   --radius-radius-full: 9999px;
 }
 
@@ -1487,12 +1487,12 @@
 
 [data-radius="round"] {
   --radius-radius-none: 0px;
-  --radius-radius-xs: 8px;
-  --radius-radius-sm: 10px;
-  --radius-radius-md: 12px;
-  --radius-radius-lg: 16px;
-  --radius-radius-xl: 24px;
-  --radius-radius-2xl: 32px;
+  --radius-radius-xs: 9999px;
+  --radius-radius-sm: 9999px;
+  --radius-radius-md: 9999px;
+  --radius-radius-lg: 9999px;
+  --radius-radius-xl: 9999px;
+  --radius-radius-2xl: 9999px;
   --radius-radius-3xl: 9999px;
   --radius-radius-4xl: 9999px;
   --radius-radius-5xl: 9999px;

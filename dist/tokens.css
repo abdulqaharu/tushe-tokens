@@ -1487,12 +1487,12 @@
 
 [data-radius="round"] {
   --radius-radius-none: 0px;
-  --radius-radius-xs: 9999px;
-  --radius-radius-sm: 9999px;
-  --radius-radius-md: 9999px;
-  --radius-radius-lg: 9999px;
-  --radius-radius-xl: 9999px;
-  --radius-radius-2xl: 9999px;
+  --radius-radius-xs: 4px;
+  --radius-radius-sm: 8px;
+  --radius-radius-md: 12px;
+  --radius-radius-lg: 16px;
+  --radius-radius-xl: 20px;
+  --radius-radius-2xl: 24px;
   --radius-radius-3xl: 9999px;
   --radius-radius-4xl: 9999px;
   --radius-radius-5xl: 9999px;
